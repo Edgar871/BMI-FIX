@@ -1,0 +1,71 @@
+<?xml version="1.0" encoding="UTF-8"?><!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd"><html xmlns="http://www.w3.org/1999/xhtml" lang="en"><head><meta http-equiv="Content-Type" content="text/html;charset=UTF-8"/><link rel="stylesheet" href="../.resources/report.css" type="text/css"/><link rel="shortcut icon" href="../.resources/report.gif" type="image/gif"/><title>ProgramLogic.java</title><link rel="stylesheet" href="../.resources/prettify.css" type="text/css"/><script type="text/javascript" src="../.resources/prettify.js"></script></head><body onload="window['PR_TAB_WIDTH']=4;prettyPrint()"><div class="breadcrumb" id="breadcrumb"><span class="info"><a href="../.sessions.html" class="el_session">Sessions</a></span><a href="../index.html" class="el_report">JaCoCoverage analysis of project &quot;BMI&quot; (powered by JaCoCo from EclEmma)</a> &gt; <a href="index.source.html" class="el_package">idealbmi.Function</a> &gt; <span class="el_source">ProgramLogic.java</span></div><h1>ProgramLogic.java</h1><pre class="source lang-java linenums">/*
+ * To change this license header, choose License Headers in Project Properties.
+ * To change this template file, choose Tools | Templates
+ * and open the template in the editor.
+ */
+package idealbmi.Function;
+
+import idealbmi.Model.ModelProgram;
+import java.util.regex.Matcher;
+import java.util.regex.Pattern;
+import idealbmi.Model.Operation;
+import java.text.DecimalFormat;
+
+/**
+ *
+ * @author Asus
+ */
+<span class="fc" id="L18">public class ProgramLogic extends ModelProgram{</span>
+<span class="fc" id="L19">    ModelProgram mp = new ModelProgram();</span>
+    
+    public Boolean checkName(String name){
+<span class="fc" id="L22">        Pattern pattern = Pattern.compile(&quot;^[a-zA-Z\\s-]+$&quot;);</span>
+<span class="fc" id="L23">        Matcher matcher = pattern.matcher(name);</span>
+<span class="fc" id="L24">        return matcher.matches();</span>
+    }
+    
+    public Boolean checkAge(String age){
+<span class="fc" id="L28">        Pattern pattern = Pattern.compile(&quot;^[1-9]?[0-9]{1}$|^100$&quot;);</span>
+<span class="fc" id="L29">        Matcher matcher = pattern.matcher(age);</span>
+<span class="fc" id="L30">        return matcher.matches();</span>
+    }
+    
+    public String returnBMI(ModelProgram modelProgram){
+<span class="fc" id="L34">        Operation op = new Operation();</span>
+<span class="fc" id="L35">        DecimalFormat format = new DecimalFormat(&quot;##,##&quot;);</span>
+<span class="fc" id="L36">        double result = op.operation(modelProgram.getWeight(), modelProgram.getHeight());</span>
+<span class="fc" id="L37">        String total = &quot;&quot; + format.format(result);</span>
+<span class="fc" id="L38">        return total;</span>
+    }
+	
+    public String returnTips(ModelProgram modelProgram){
+<span class="fc bfc" id="L42" title="All 2 branches covered.">        if(modelProgram.getTips()&gt;= 30){</span>
+<span class="fc" id="L43">            return &quot;1. Change your diet. To lose weight, you have to reduce&quot;</span>
+                    + &quot;\nthe number of calories you consume.&quot;
+                    + &quot;\n2. Adding physical activity after reaching a minimum&quot;
+                    + &quot;\nof 10% weight-loss goal.&quot;
+                    + &quot;\n3. Medication. It can help with weight loss for&quot;
+                    + &quot; extreme obesity&quot;;
+        }
+<span class="pc bpc" id="L50" title="1 of 4 branches missed.">        else if ((modelProgram.getTips()&gt;= 25.0) &amp;&amp; (modelProgram.getTips()&lt;= 29.9)){</span>
+<span class="fc" id="L51">            return &quot;1. Diet. A steady weight loss of about one pound a week is&quot;</span>
+                    + &quot;\nthe safest way to lose weight.&quot;
+                    + &quot;\n2. Regular exercise such as brisk walking, running,&quot;
+                    + &quot;\nswimming, biking, and dancing.&quot;;
+        }
+<span class="pc bpc" id="L56" title="1 of 4 branches missed.">        else if ((modelProgram.getTips()&gt;= 18.5) &amp;&amp; (modelProgram.getTips()&lt;= 24.9)){</span>
+<span class="fc" id="L57">            return &quot;It's important to maintain your BMI by exercising at least&quot;</span>
+                    + &quot;\n60-90 minutes most days of the week. Staying hydrated&quot;
+                    + &quot;\nand eat a balanced diet are equally important.&quot;;
+        }
+<span class="fc" id="L61">        return &quot;1. Eat more frequently. When you're underweight, you may feel&quot;</span>
+                + &quot;\nfull faster. Eat 5 to 6 smaller meals during the day.&quot;
+                + &quot;\n2. Choose nutrient-rich foods, such as fruits and vegetables,&quot;
+                + &quot;\ndairy products, lean protein sources, and nuts and seeds.&quot;
+                + &quot;\n3. Try smoothies and shakes, don't drink soda, coffee, and&quot;
+                + &quot;\nother drinks with few calories.&quot;;
+    }
+
+}
+
+</pre><div class="footer"><span class="right">Created with <a href="http://www.eclemma.org/jacoco">JaCoCo</a> 0.7.6.201602180812</span></div></body></html>
